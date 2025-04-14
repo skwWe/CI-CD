@@ -82,3 +82,8 @@ jobs:
               run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
               env:
                 Configuration: ${{ matrix.configuration }}
+
+            - name: Debug - Print Variables
+              run: |
+                echo "Solution Name: ${{ env.Solution_Name }}"
+                echo "Test Project Path: ${{ env.Test_Project_Path }}"
