@@ -2,6 +2,7 @@
 using ArrayMethods;
 using System;
 using System.Linq;
+using System.Collections;
 
 namespace UnitTests
 {
@@ -13,7 +14,7 @@ namespace UnitTests
         [TestInitialize]
         public void Setup()
         {
-            array = new int[] { 9, 2, 7, 4, 5, 6, 1, 8, 3 };
+            array = new int[] { 2, 1, 3, 4, 6, 5, 7, 8, 9 };
             _arraytest = new ArrayClass();
             _arraytest.array = (int[])array.Clone();
         }
@@ -29,9 +30,8 @@ namespace UnitTests
         public void ArrayFilter_ShouldFilt()
         {
             int[] expected = new int[] { 3, 6, 9 };
-            var result = _arraytest.ArrayFilter();
-            CollectionAssert.AreEqual(expected, result);
+            _arraytest.ArrayFilter();
+            CollectionAssert.AreEqual(expected, _arraytest.array);
         }
-
     }
 }

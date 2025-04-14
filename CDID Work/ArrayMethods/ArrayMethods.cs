@@ -22,9 +22,21 @@ namespace ArrayMethods
 
         public void ArrayFilter()
         {
-            var DivisibleByThree = from i in array
-                                   where i % 3 == 1
-                                   select i;
+            int j = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] % 3 == 0)
+                {
+                    array[j] = array[i];
+                    j++;
+                }
+            }
+
+
+            if (j < array.Length)
+            {
+                Array.Resize(ref array, j);
+            }
         }
     }
 }
