@@ -13,30 +13,63 @@ namespace ArrayMethods
 
         public int[] ArraySort()
         {
-            Array.Sort(array);
-            //Console.WriteLine("");
-            foreach (var value in array)
-                Console.WriteLine(value + " ");
-            return array;
+            try
+            {
+                if (array == null || array.Length == 0)
+                {
+                    throw new ArgumentException("Array cannot be null or empty for sorting.");
+                }
+                Array.Sort(array);
+                //Console.WriteLine("");
+                foreach (var value in array)
+                    Console.WriteLine(value + " ");
+                return array;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Ошибка сортировки массива: {ex.Message}");
+                return null; 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Неожиданная ошибка возникшая при сортировке: {ex.Message}");
+                return null; 
+            }
         }
 
         public void ArrayFilter()
         {
-            int j = 0;
-            for (int i = 0; i < array.Length; i++)
+            try
             {
-                if (array[i] % 3 == 0)
+                if (array == null)
                 {
-                    array[j] = array[i];
-                    j++;
+                    throw new ArgumentNullException("Array cannot be null for filtering.");
+                }
+                int j = 0;
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (array[i] % 3 == 0)
+                    {
+                        array[j] = array[i];
+                        j++;
+                    }
+                }
+
+
+                if (j < array.Length)
+                {
+                    Array.Resize(ref array, j);
                 }
             }
-
-
-            if (j < array.Length)
+            catch (ArgumentNullException ex)
             {
-                Array.Resize(ref array, j);
+                Console.WriteLine($"Ошибка фильтрации массива: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Неожиданная ошибка возникшая при фильтрации: {ex.Message}");
             }
         }
     }
 }
+
